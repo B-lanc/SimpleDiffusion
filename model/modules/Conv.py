@@ -30,7 +30,7 @@ class DownConv(nn.Module):
 
 class UpConv(nn.Module):
     def __init__(self, in_channels, out_channels, emb_channels):
-        super(DownConv, self).__init__()
+        super(UpConv, self).__init__()
         self.activation = nn.ReLU()
         self.conv1 = nn.Conv2d(in_channels, in_channels, 3, 1, 1)
         self.norm1 = nn.GroupNorm(8, in_channels)

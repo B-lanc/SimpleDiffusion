@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from util import sinusodial
-from Conv import DownConv, UpConv
+from .util import sinusodial
+from .Conv import DownConv, UpConv
 
 
 class UNet(nn.Module):
@@ -32,7 +32,7 @@ class UNet(nn.Module):
         x = self.inconv(x)
 
         x1 = self.down1(x, pos_emb, class_emb)
-        x2 = self.down2(x, pos_emb, class_emb)
+        x2 = self.down2(x1, pos_emb, class_emb)
         x = self.bottle1(x2)
         x = self.bottle2(x)
         x = self.up1(x, x2, pos_emb, class_emb)
