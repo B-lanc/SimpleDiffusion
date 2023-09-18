@@ -6,7 +6,10 @@ def sinusodial(t, embedding_dim, device="cuda"):
     t => 1D tensor with shape (batch_size)
     embedding_dim => int
     """
-    emb = 1 / (10000 ** (torch.arange(1, embedding_dim, 2, device="cuda").float() / embedding_dim))
+    emb = 1 / (
+        10000
+        ** (torch.arange(1, embedding_dim, 2, device="cuda").float() / embedding_dim)
+    )
     emb = emb[:, None]
     sin = torch.sin(emb * t).T
     cos = torch.cos(emb * t).T

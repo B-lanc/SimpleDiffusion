@@ -40,3 +40,7 @@ def label2num(label):
         "truck": 9,
     }
     return dicc[label]
+
+
+def save_image(path, image):
+    mpimg.imsave(path, image)
