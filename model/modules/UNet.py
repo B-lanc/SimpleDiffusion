@@ -10,14 +10,8 @@ from .Attention import AttentionBlock
 class UNet(nn.Module):
     def __init__(self, in_channels, out_channels, emb_channels, MASKING=False, ATTENTION=False):
         super(UNet, self).__init__()
-        if MASKING:
-            UP = MASKUpConv
-        else:
-            UP = UpConv
-        if ATTENTION:
-            att = AttentionBlock
-        else:
-            att = nn.Identity
+        UP = MASKUpConv if MASKING else UpConv
+        att = AttentionBlock if ATTENTION else nn.Identity
 
         self.emb_channels = emb_channels
         self.inconv = nn.Conv2d(in_channels, 64, 1, 1, 0)
