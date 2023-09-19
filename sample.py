@@ -8,7 +8,7 @@ import os
 
 
 def main():
-    prompt = ["frog"] * 64
+    prompt = ["bird"] * 64
     checkpoint_dir = os.path.join(
         settings.save_dir,
         "MASKINGUNet",

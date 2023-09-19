@@ -8,6 +8,7 @@ import settings
 
 import os
 
+
 def main():
     TAG = "MASKINGUNet"
     model = SimpleDiffusion(1000, 0.9)
@@ -16,16 +17,18 @@ def main():
         os.makedirs(save_dir)
 
     ds = load_cifar_train(settings.dataset_dir)
-    dataloader = DataLoader(ds, batch_size=settings.batch_size, shuffle=True, num_workers=12)
+    dataloader = DataLoader(
+        ds, batch_size=settings.batch_size, shuffle=True, num_workers=12
+    )
 
     trainer = L.Trainer(
         accelerator="gpu",
         max_epochs=500,
-        min_epochs=499,
+        min_epochs=200,
         default_root_dir=save_dir,
     )
 
-    torch.set_float32_matmul_precision('high')
+    torch.set_float32_matmul_precision("high")
     trainer.fit(model, dataloader)
 
 

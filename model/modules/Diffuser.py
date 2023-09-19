@@ -38,11 +38,10 @@ class Diffuser(nn.Module):
         a_h = self.alpha_hat[timesteps[0]]
         b = self.beta[timesteps[0]]
         return (
-            1
-            / torch.sqrt(a)
-            * (x - ((1 - a) / (torch.sqrt(1 - a_h))) * predicted)
+            1 / torch.sqrt(a) * (x - ((1 - a) / (torch.sqrt(1 - a_h))) * predicted)
             + torch.sqrt(b) * noise
         )
+
 
 # class DiffuserTemp():
 #     def __init__(

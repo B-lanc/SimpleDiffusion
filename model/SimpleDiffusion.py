@@ -29,7 +29,9 @@ class SimpleDiffusion(L.LightningModule):
             labels = None
         preds = self.model(noised_img, timesteps, labels)
         loss = torch.nn.functional.mse_loss(preds, noise)
-        self.log("train_loss", loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
+        self.log(
+            "train_loss", loss, on_step=True, on_epoch=True, prog_bar=True, logger=True
+        )
         return loss
 
     def gen_steps(self, batch_size):
