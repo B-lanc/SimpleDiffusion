@@ -1,7 +1,7 @@
 import lightning as L
 import torch
 
-from .modules.UNet import UNet, MASKINGUNet
+from .modules.UNet import UNet
 from .modules.Diffuser import Diffuser
 
 import random
@@ -13,7 +13,7 @@ class SimpleDiffusion(L.LightningModule):
         self.timesteps = timesteps
         self.cr = class_rate
 
-        self.model = MASKINGUNet(3, 3, 256)
+        self.model = UNet(3, 3, 256, True, True)
         self.diff = Diffuser(timesteps=timesteps)
 
     def configure_optimizers(self):
