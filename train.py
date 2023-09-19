@@ -10,8 +10,8 @@ import os
 
 
 def main():
-    TAG = "MASKINGUNet"
-    model = SimpleDiffusion(1000, 0.9)
+    TAG = "MASKINGUNetNoAtt"
+    model = SimpleDiffusion(1000, 0.9, True, False)
     save_dir = os.path.join(settings.save_dir, TAG)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
@@ -23,8 +23,8 @@ def main():
 
     trainer = L.Trainer(
         accelerator="gpu",
-        max_epochs=500,
-        min_epochs=200,
+        max_epochs=100,
+        min_epochs=50,
         default_root_dir=save_dir,
     )
 

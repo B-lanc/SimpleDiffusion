@@ -8,12 +8,12 @@ import random
 
 
 class SimpleDiffusion(L.LightningModule):
-    def __init__(self, timesteps=1000, class_rate=0.9):
+    def __init__(self, timesteps=1000, class_rate=0.9, MASKING=False, ATTENTION=False):
         super(SimpleDiffusion, self).__init__()
         self.timesteps = timesteps
         self.cr = class_rate
 
-        self.model = UNet(3, 3, 256, True, True)
+        self.model = UNet(3, 3, 256, MASKING, ATTENTION)
         self.diff = Diffuser(timesteps=timesteps)
 
     def configure_optimizers(self):
