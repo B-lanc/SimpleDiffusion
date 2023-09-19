@@ -20,8 +20,11 @@ def main():
     labels = [label2num(pro) for pro in prompt]
     labels = torch.Tensor(labels).to(settings.device)
     model = SimpleDiffusion(1000, 0.9, True, False)
-    print(model.model.up3.conv2.weight.shape)
-    model = model.load_from_checkpoint(checkpoint_dir).to(settings.device).eval()
+
+    # model.load_from_checkpoint(checkpoint_dir)
+    model.load_state_dict(torch.load(checkpoint_dir)["state_dict"])
+
+    model.to(settings.device).eval()
     
     save_dir = os.path.join(settings.save_dir, "samples")
 
