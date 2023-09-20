@@ -6,6 +6,7 @@ class AttentionBlock(nn.Module):
     """
     Stolen from stable diffusion :>
     """
+
     def __init__(self, in_channel):
         super(AttentionBlock, self).__init__()
 
@@ -24,7 +25,7 @@ class AttentionBlock(nn.Module):
 
         b, c, h, w = q.shape
         q = q.reshape(b, c, w * h)
-        q = q.permute(0, 2, 1)      # (b, wh, c)
+        q = q.permute(0, 2, 1)  # (b, wh, c)
         k = k.reshape(b, c, w * h)  # (b, c, wh)
 
         w_ = torch.bmm(q, k)  # (b, qwh, kwh)
@@ -32,8 +33,8 @@ class AttentionBlock(nn.Module):
         w_ = torch.nn.functional.softmax(w_, dim=2)
 
         v = v.reshape(b, c, w * h)  # (b, c, wh)
-        w_ = w_.permute(0, 2, 1)    # (b, kwh, qwh)
-        h_ = torch.bmm(v, w_)       # (b, c, qwh)
+        w_ = w_.permute(0, 2, 1)  # (b, kwh, qwh)
+        h_ = torch.bmm(v, w_)  # (b, c, qwh)
         h_ = h_.reshape(b, c, h, w)
 
         h_ = self.out(h_)

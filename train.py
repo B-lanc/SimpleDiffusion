@@ -10,8 +10,8 @@ import os
 
 
 def main():
-    TAG = "MASKINGUNetNoAtt"
-    model = SimpleDiffusion(1000, 0.9, True, False)
+    TAG = "MASKINGUNetAtt"
+    model = SimpleDiffusion(1000, 0.9, True, True)
     save_dir = os.path.join(settings.save_dir, TAG)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)

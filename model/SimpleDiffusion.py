@@ -13,7 +13,7 @@ class SimpleDiffusion(L.LightningModule):
         self.timesteps = timesteps
         self.cr = class_rate
 
-        self.model = UNet(3, 3, 256, MASKING, ATTENTION)
+        self.model = UNet(3, 3, 256, MASKING=MASKING, ATTENTION=ATTENTION)
         self.diff = Diffuser(timesteps=timesteps)
 
     def configure_optimizers(self):
